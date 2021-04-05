@@ -7,8 +7,12 @@ ZSH_TMUX_AUTOSTART=true
 
 source $ZSH/oh-my-zsh.sh
 
+OPEN_AT_START=(
+  project/book/Linux-diary
+)
+
 DOTFILES=~/.dotfiles
-for config_file ("$DOTFILES"/scripts/**/*.*sh); do
+for config_file ("$DOTFILES"/dotfiles.d/**/*.*sh); do
   source "$config_file"
 done
 unset config_file
@@ -16,6 +20,8 @@ unset config_file
 # zsh-z
 set $_Z_MAX_SCORE 1000
 autoload -U compinit && compinit
+
+# prompt
 
 set_prompt_symbol() {
   if [ $EUID -ne "0" ]; then
