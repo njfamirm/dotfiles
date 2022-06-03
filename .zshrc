@@ -13,7 +13,6 @@ ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_DEFAULT_SESSION_NAME="alwatr-zsh"
 ZSH_TMUX_PREFIX_ON_SSH="M-w"
 
-
 plugins=(
   # ssh-agent
   tmux
@@ -22,7 +21,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 DOTFILES=~/.dotfiles
-for config_file ("$DOTFILES"/scripts/**/*.sh); do
+for config_file ("$DOTFILES"/scripts/**/*.*sh); do
   source "$config_file"
 done
 unset config_file

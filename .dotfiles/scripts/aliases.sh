@@ -29,7 +29,7 @@ function mkd() {
   cd "$1";
 }
 
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dtf='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # Config file
 alias zshconf="vim ~/.zshrc"
