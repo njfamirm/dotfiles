@@ -15,7 +15,7 @@ ZSH_TMUX_PREFIX_ON_SSH="M-w"
 
 plugins=(
   # ssh-agent
-  tmux
+  # tmux
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -30,7 +30,7 @@ unset config_file
 set $_Z_MAX_SCORE 1000
 autoload -U compinit && compinit
 
-PROMPT="%F{blue}%n %F{white}at %F{reset_color}%F{yellow}%~%F{reset_color} "$'$(set_git_prompt)'$'\n'"%F{yellow}$%F{reset_color} "
+PROMPT="%F{yellow}%n %F{white}at %F{reset_color}%F{blue}%~%F{reset_color} "$'$(set_git_prompt)'$'\n'"%F{yellow}$%F{reset_color} "
 BIG_PROMPT=$PROMPT
 
 SMALL_PROMPT="%F{blue}"'${${(s:/:)PWD}[-2]}/${PWD:t}'"%F{reset_color}"$'\n'"%F{yellow}$ %F{reset_color}"
