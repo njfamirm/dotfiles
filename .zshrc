@@ -1,22 +1,9 @@
 export ZSH="$HOME/.oh-my-zsh"
 
-if [[ -n "$SSH_CLIENT" && -n "$TMUX" ]] ; then
-    tmux unbind M-q
-    tmux set -g prefix M-w
-    tmux bind M-w send-prefix
-fi
-
 zstyle ':omz:update' mode reminder
 
 # tmux plugin Config
 ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_DEFAULT_SESSION_NAME="alwatr-zsh"
-ZSH_TMUX_PREFIX_ON_SSH="M-w"
-
-plugins=(
-  # ssh-agent
-  # tmux
-)
 
 source $ZSH/oh-my-zsh.sh
 
