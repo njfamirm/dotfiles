@@ -17,10 +17,10 @@ alias e="exit"
 alias s=sudo
 alias ls="ls --color='auto'"
 alias lsa="ls -a --color='auto'"
-alias ll="ls -ltrh --color='auto'"
+alias ll="ls -altrh --color='auto'"
 alias m=make
 alias tm="tmux"
-alias reload="source ~/.zshrc"
+alias reload="exec zsh"
 alias v=vim
 alias cdl="cd -"
 
