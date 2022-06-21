@@ -10,6 +10,7 @@ run_tmux() {
 
 if [ -z $TMUX ];then
   run_tmux
+  clear
 fi
 
 if ! (( $+commands[tmux] )); then
@@ -120,4 +121,11 @@ if [[ -z "$TMUX" && "$ZSH_TMUX_AUTOSTART" == "true" && -z "$INSIDE_EMACS" && -z 
     export ZSH_TMUX_AUTOSTARTED=true
     _zsh_tmux_plugin_run
   fi
+fi
+
+# change prefix key on ssh
+if [[ -n "$SSH_CLIENT" && -n "$TMUX" ]] ; then
+    tmux unbind M-q
+    tmux set -g prefix M-w
+    tmux bind M-w send-prefix
 fi

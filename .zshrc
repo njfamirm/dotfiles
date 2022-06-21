@@ -19,28 +19,31 @@ autoload -U compinit && compinit
 
 set_prompt_symbol() {
   if [ $EUID -ne "0" ]; then
-    echo "$"
+    echo "%F{#c5c5b6}$"
   else
-    echo "#"
+    echo "%F{#c5c5b6}#"
   fi
 }
 
-PROMPT="%F{green}%n %F{white}at %F{reset_color}%F{blue}%~%F{reset_color} "$'$(set_git_prompt)'$'\n'"%F{yellow}$(set_prompt_symbol)%F{reset_color} "
-BIG_PROMPT=$PROMPT
-
-SMALL_PROMPT="%F{blue}"'${${(s:/:)PWD}[-2]}/${PWD:t}'"%F{reset_color}"$'\n'"%F{yellow}$ %F{reset_color}"
-
-# change prompt size
-resize() {
-  if [ $PROMPT != $SMALL_PROMPT ]; then
-  	PROMPT=$SMALL_PROMPT
-  else
-    PROMPT=$BIG_PROMPT
+short_pwd() {
+  pwd="${${(s:/:)PWD}[-2]}/${PWD:t}"
+  if [ "$PWD" = "$HOME" ]
+  then
+    pwd='~'
   fi
+  echo "$pwd"
 }
+
+PROMPT="%F{#fcf300}%n %F{#c5c5b6}at %F{#ccff33}"'$(short_pwd)'"%F{reset_color} "'$(set_git_prompt)'$'\n'"$(set_prompt_symbol)%F{reset_color} "
+PROMPT2="$(set_prompt_symbol) "
 
 # Git signed key
 export GPG_TTY=$(tty)
 
 eval $(thefuck --alias)
 ZSH_DISABLE_COMPFIX=true
+
+# env
+export GOPATH="/home/njfamirm/go"
+export GOROOT="/usr/lib/go"
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
