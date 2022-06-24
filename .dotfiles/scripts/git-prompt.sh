@@ -31,9 +31,9 @@ set_git_prompt() {
   else
     return 0
   fi
-  [ ! "$staged" -eq "0" ] && git_prompt="$git_prompt %F{#55a630}#$staged%F{reset_color}";
-  [ ! "$unstaged" -eq "0" ] && git_prompt="$git_prompt %F{#f5d7bd}+$unstaged%F{reset_color}";
-  [ ! "$untracked" -eq "0" ] && git_prompt="$git_prompt %F{#f94144}?$untracked%F{reset_color}";
+  [ ! "$staged" -eq "0" ] && git_prompt="$git_prompt,%F{#55a630}#$staged%F{reset_color}";
+  [ ! "$unstaged" -eq "0" ] && git_prompt="$git_prompt,%F{#f5d7bd}+$unstaged%F{reset_color}";
+  [ ! "$untracked" -eq "0" ] && git_prompt="$git_prompt,%F{#f94144}?$untracked%F{reset_color}";
   git_prompt="$git_prompt]"
   echo $git_prompt
 }

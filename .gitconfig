@@ -6,6 +6,7 @@
 [alias]
   co = checkout
   cof = checkout -- 
+  sw = switch
   a = add
   c = commit -S -m
 	cm = commit -S --amend
