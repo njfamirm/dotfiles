@@ -84,6 +84,12 @@ augroup Markdown
   autocmd FileType markdown set wrap
 augroup END
 
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
