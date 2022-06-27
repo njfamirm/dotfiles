@@ -95,15 +95,32 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'dracula/vim', { 'name': 'dracula' }
-Plugin 'vim-airline/vim-airline'
-Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plugin 'junegunn/fzf.vim'
+Plugin 'itchyny/lightline.vim'
 Plugin 'editorconfig/editorconfig-vim'
 
 call vundle#end()
 
 " enable plugins and load plugin for the detected file type
 filetype plugin on
+
+" lightline.vim
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename' ] ],
+      \   'right': [ [ 'percent' ],
+      \              [ 'filetype' ] ]
+      \ },
+      \ 'component_function': {
+        \   'filename': 'LightlineFilename',
+      \ },
+      \ }
+
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  return filename . modified
+endfunction
 
 " Theme
 colorscheme dracula
