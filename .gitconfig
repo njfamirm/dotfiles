@@ -4,6 +4,7 @@
 	signingkey = CA2BA99D36D84477BDA7F1039B34AEFECF4689A4
 
 [alias]
+  l = log
   co = checkout
   cof = checkout -- 
   sw = switch
@@ -21,7 +22,6 @@
   b = branch
 	ba = branch -avv
   cb = "!git fetch -p && for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == \"[gone]\" {sub(\"refs/heads/\", \"\", $1); print $1}'); do git branch -D $branch; done" # clean branch
-  cbfr = "!git checkout --track" # create branch from remote
   rs = reset
 	rsh = reset --hard
   d = diff --color --color-words --abbrev
