@@ -2,14 +2,10 @@ export ZSH="$HOME/.oh-my-zsh"
 
 zstyle ':omz:update' mode reminder
 
-# tmux plugin Config
-ZSH_TMUX_AUTOSTART=true
-
 source $ZSH/oh-my-zsh.sh
 
-OPEN_AT_START=(
-  project/book/Linux-diary
-)
+# Tmux plugin config
+ZSH_TMUX_AUTOSTART=true
 
 DOTFILES=~/.dotfiles
 for config_file ("$DOTFILES"/dotfiles.d/**/*.*sh); do
