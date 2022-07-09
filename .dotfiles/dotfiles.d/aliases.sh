@@ -22,6 +22,7 @@ alias m=make
 alias tm="tmux"
 alias reload="exec zsh"
 alias v=vim
+alias vi=vim
 alias cdl="cd -"
 
 function mkd() {
