@@ -83,3 +83,5 @@
 [core]
   pager = less -FRX
 	editor = vim
+[advice]
+	addEmptyPathspec = false
