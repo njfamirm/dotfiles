@@ -12,3 +12,5 @@ if [ $? = 0 ]; then
 fi;
 dotfiles checkout
 dotfiles config status.showUntrackedFiles no
+
+bash ./intall-deps.sh
