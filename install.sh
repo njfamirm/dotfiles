@@ -16,7 +16,8 @@ dotfiles checkout
 dotfiles config status.showUntrackedFiles no
 
 # Install packages with apt
-if type apt > /dev/null; then
+if type apt-get > /dev/null; then
+   sudo apt-get update
    sudo apt-get -y install tmux vim git
 fi
 
