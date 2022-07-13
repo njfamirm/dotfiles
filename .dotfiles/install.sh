@@ -13,4 +13,5 @@ fi;
 dotfiles checkout
 dotfiles config status.showUntrackedFiles no
 
+chmod +x ~/.dotfiles/install-deps.sh
 bash ~/.dotfiles/install-deps.sh
