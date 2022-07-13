@@ -13,4 +13,4 @@ fi;
 dotfiles checkout
 dotfiles config status.showUntrackedFiles no
 
-bash ./intall-deps.sh
+bash ~/.dotfiles/install-deps.sh

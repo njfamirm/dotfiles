@@ -1,6 +1,6 @@
 # Install packages with apt
 if type apt > /dev/null; then
-   sudo apt install -y tmux vim git
+   sudo apt-get -y install tmux vim git
 fi
 
 # Install oh-my-zsh (https://github.com/ohmyzsh/ohmyzsh)
