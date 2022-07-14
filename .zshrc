@@ -52,7 +52,6 @@ PROMPT2="$(set_prompt_symbol) "
 # Git signed key
 export GPG_TTY=$(tty)
 
-eval $(thefuck --alias)
 ZSH_DISABLE_COMPFIX=true
 
 # env
