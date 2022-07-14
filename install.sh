@@ -1,16 +1,16 @@
 #!/bin/bash
 
-git clone https://github.com/njfamirm/dotfiles ~/.dotfiles
-function dotfiles {
+git clone --bare https://github.com/njfamirm/dotfiles ~/.dotfiles
+function dtf {
    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
 }
-dotfiles checkout --force
+dtf checkout --force
 if [ $? = 0 ]; then
   echo "Checked out config.";
-  else
-    echo "Backing up pre-existing dot files.";
+else
+  echo "Backing up pre-existing dot files.";
 fi;
-dotfiles config status.showUntrackedFiles no
+dtf config status.showUntrackedFiles no
 
 # Install packages with apt
 if type apt-get > /dev/null; then
