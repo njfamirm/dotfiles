@@ -3,5 +3,7 @@ OPEN_AT_START=(
 )
 
 for d in $OPEN_AT_START; do
-  tmux new-window -d -c "$HOME/$d"
+  if [ -d "$HOME/$d" ];then
+    tmux new-window -d -c "$HOME/$d"
+  fi
 done
