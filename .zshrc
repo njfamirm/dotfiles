@@ -54,7 +54,8 @@ export GPG_TTY=$(tty)
 
 ZSH_DISABLE_COMPFIX=true
 
+# TODO
 # env
-export GOPATH="/home/njfamirm/go"
-export GOROOT="/usr/lib/go"
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+# export GOPATH="/home/njfamirm/go"
+# export GOROOT="/usr/lib/go"
+# export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
