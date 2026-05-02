@@ -49,21 +49,11 @@ function publicIp() {
 # Load all rarely-used utility scripts on demand
 # ==============================================================================
 load_utils() {
-  echo "🚀 Loading all 1bash utility scripts..."
-  for i in $ONE_BASH/utils/*.sh; do
-    if [ -r "$i" ]; then
-      source "$i"
-      echo "  ✅ Loaded: $(basename "$i")"
-    fi
-  done
-
-  if [ -d "$ONE_BASH/utils/base.d" ]; then
-    for i in $ONE_BASH/utils/base.d/*.sh; do
-      if [ -r "$i" ]; then
-        source "$i"
-        echo "  ✅ Loaded: base.d/$(basename "$i")"
-      fi
-    done
+  echo "🚀 Loading utilities from utils.sh..."
+  if [ -r "$ONE_BASH/utils.sh" ]; then
+    source "$ONE_BASH/utils.sh"
+    echo "🎉 All utilities are now available in this session!"
+  else
+    echo "❌ utils.sh not found!"
   fi
-  echo "🎉 All utilities are now available in this session!"
 }
