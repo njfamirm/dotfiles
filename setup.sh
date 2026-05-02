@@ -44,7 +44,6 @@ fi
 
 echoStep '🔗 Creating symbolic links...'
 mkdir -p $BACKUP_DIR
-createSymlink $ONE_BASH/inputrc.sh ~/.inputrc
 createSymlink $ONE_BASH/bash_profile.sh ~/.bash_profile
 createSymlink $ONE_BASH/gitconfig ~/.gitconfig
 createSymlink $ONE_BASH/config/.vimrc ~/.vimrc
