@@ -1,7 +1,7 @@
 [user]
 	name = S. Amir Mohammad Najafi
 	email = njfamirm@gmail.com
-	signingkey = 3F9828FF9E775037409C37C063FA5F474B27F3D0 
+	signingkey = 3F9828FF9E775037409C37C063FA5F474B27F3D0
 
 [alias]
   a = add -v
@@ -10,12 +10,8 @@
   cam = commit --amend
   can = commit --amend --no-edit
   cl = clone -v
-  cl1 = clone --depth=1 -v
   pl = pull --prune --progress --autostash --rebase=true -v
-  plm = pull --prune --progress --autostash --rebase=false -v
   p = push -v
-  pp = push --prune -v
-  pa = push --all -v
   pt = push --tags -v
   b = branch -v
   ba = branch -avv -v
@@ -41,6 +37,7 @@
   feat = !"git fetch && git switch -c feat/$1 origin/next && git push -u #"
   sep = !"git fetch && git switch -c feat/$1 origin/next && shift && git cherry-pick $@ && git push -u && gh pr create --assignee @me --base next --fill --web #"
   l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+  ls = log --oneline -n 10
   # Show the diff between the latest commit and the current state
   df = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
   t = tag -ln3
@@ -51,7 +48,7 @@
               git gc --prune=now --aggressive && \
               git prune && \
               git remote | while read remote; do echo "Pruning remote: $remote"; git remote prune "$remote"; done"
-  delete-all-branch= !"git branch | grep -v \"next\" | xargs git branch -D"
+  delete-all-branch = !"git branch | grep -v \"next\\|main\\|master\\|\\*\" | xargs -r git branch -D"
   delete-all-tag= !"git tag -d $(git tag -l)"
 
 [help]
@@ -68,6 +65,7 @@
 [branch]
   autosetupmerge = true
   autosetupremote = true
+  sort = -committerdate
 
 [color "diff"]
   meta = yellow bold
@@ -95,9 +93,14 @@
 
 # [http]
 #   sslVerify = false
-
 # [credential]
 #   helper = manager
+
+[rerere]
+  enabled = true
+
+[diff]
+  algorithm = histogram
 
 [core]
   autocrlf = input
@@ -108,12 +111,6 @@
 
 [commit]
 	gpgsign = true
-
-[filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
 
 [fetch]
   verbose = true
