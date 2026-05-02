@@ -36,7 +36,8 @@ alias dir="dir $colorflag"
 if command -v starship &> /dev/null; then
   eval "$(starship init bash)"
 else
-  PS1="\[\033]0;\w\007\]\n\[\e[1;33m\]$USER \[\e[1;37m\]at \[\e[1;36m\]$HOSTNAME \[\e[1;37m\]in \[\e[1;31m\]\w\n\[\e[1;37m\]\$ \[\e[0m\]"
+  # Clean, standard fallback prompt for servers without Starship (No git needed)
+  PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 fi
 
 # Zoxide (Better cd)

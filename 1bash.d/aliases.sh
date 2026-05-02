@@ -28,6 +28,15 @@ alias l='lsa'
 # ==============================================================================
 # Shortcuts (Apps & Utilities)
 # ==============================================================================
+# Universal Clipboard
+if command -v pbcopy > /dev/null 2>&1; then
+  alias clip='pbcopy'
+elif command -v wl-copy > /dev/null 2>&1; then
+  alias clip='wl-copy'
+elif command -v xclip > /dev/null 2>&1; then
+  alias clip='xclip -selection clipboard'
+fi
+
 alias g='git'
 alias v='vim'
 alias y='yarn'
