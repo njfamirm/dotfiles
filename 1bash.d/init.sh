@@ -51,17 +51,12 @@ fi
 # fi
 
 # ==============================================================================
-# 4. NVM (Node Version Manager) Lazy Loading
+# 4. NVM (Node Version Manager)
 # ==============================================================================
-export NVM_DIR="$HOME/.nvm"
-_lazy_load_nvm() {
-  unset -f nvm node npm npx yarn pnpm corepack
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-}
-for cmd in nvm node npm npx yarn pnpm corepack; do
-  eval "${cmd}() { _lazy_load_nvm; ${cmd} \"\$@\"; }"
-done
+NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
 
 # ==============================================================================
 # 5. SSH Agent Auto-Start
