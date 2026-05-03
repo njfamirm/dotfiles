@@ -1,0 +1,45 @@
+format = """
+$username$hostname$directory$git_branch$git_commit$git_status$cmd_duration
+$character"""
+
+[username]
+style_user = "bold #ffb454"
+style_root = "bold #f07178"
+format = "[$user]($style) "
+show_always = true
+
+[hostname]
+ssh_only = true
+format = "[at ](dimmed white)[$hostname](#59c2ff) "
+
+[directory]
+style = "bold #aad94c"
+format = "[in ](dimmed white)[$path]($style) "
+truncation_length = 3
+truncate_to_repo = false
+truncation_symbol = "…/"
+
+[git_branch]
+style = "bold #d2a8ff"
+format = "[on ](dimmed white)[$branch]($style) "
+
+[git_commit]
+commit_hash_length = 7
+format = '[\($hash\)](dimmed white) '
+only_detached = false
+
+[git_status]
+style = "bold #e6b450"
+format = '([$all_status$ahead_behind]($style))'
+modified = "*"
+untracked = "?"
+stashed = ""
+staged = "+"
+
+[cmd_duration]
+min_time = 2000
+format = "[took $duration](dimmed white) "
+
+[character]
+success_symbol = '[\$](#59c2ff)'
+error_symbol = '[\$](#f07178)'

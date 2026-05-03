@@ -49,5 +49,7 @@ createSymlink $ONE_BASH/gitconfig ~/.gitconfig
 createSymlink $ONE_BASH/config/.vimrc ~/.vimrc
 createSymlink $ONE_BASH/config/tmux.conf ~/.tmux.conf
 
+mkdir -p ~/.config
+createSymlink $ONE_BASH/config/starship.toml ~/.config/starship.toml
 
 echoStep '🎉 Done'
