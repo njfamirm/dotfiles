@@ -37,7 +37,7 @@ if [ -d "$ONE_BASH" ]; then
   git pull --prune --progress --autostash --rebase
 else
   echo '✌🏻 1bash does not exist, cloning...'
-  git clone https://github.com/njfamirm/1bash $ONE_BASH
+  git clone https://github.com/njfamirm/dotfiles $ONE_BASH
 fi
 
 # Create symbolic links
