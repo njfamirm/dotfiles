@@ -22,4 +22,4 @@ for i in $ONE_BASH/1bash.d/*.sh; do
 done
 unset i
 
-export PATH="$ONE_BASH/commands:$PATH"
+export PATH="$ONE_BASH/bin:$ONE_BASH/commands:$PATH"
