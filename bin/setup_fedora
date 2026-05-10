@@ -22,7 +22,7 @@ log_error() {
 configure_dnf_proxy() {
     local dnf_conf="/etc/dnf/dnf.conf"
     local proxy_line="proxy=http://127.0.0.1:1081"
-    
+
     log_info "Configuring DNF proxy..."
     if ! grep -q "^proxy=" "$dnf_conf"; then
         echo "$proxy_line" | sudo tee -a "$dnf_conf" > /dev/null
@@ -54,7 +54,7 @@ install_zoxide() {
     if ! command -v zoxide &> /dev/null; then
         log_info "Installing zoxide..."
         curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
-        
+
         if [ -f "$HOME/.bashrc" ]; then
             echo 'eval "$(zoxide init bash)"' >> ~/.bashrc
             log_info "Zoxide added to .bashrc"
@@ -65,12 +65,12 @@ install_zoxide() {
     fi
 }
 
-install_1bash() {
-    log_info "Installing 1bash..."
-    export ONE_BASH="$HOME/1bash"
-    
-    if bash <(curl -sS "https://raw.githubusercontent.com/njfamirm/1bash/main/setup.sh"); then
-        log_info "1bash installation completed."
+install_dotfiles() {
+    log_info "Installing dotfiles..."
+    export DOTFILES="$HOME/dotfiles"
+
+    if bash <(curl -sS "https://raw.githubusercontent.com/njfamirm/dotfiles/main/setup.sh"); then
+        log_info "dotfiles installation completed."
         if [ -f "$HOME/.bash_profile" ] && [ -r "$HOME/.bash_profile" ]; then
             set +e
             source ~/.bash_profile 2>/dev/null || log_info "Note: .bash_profile sourcing had issues, but continuing..."
@@ -78,9 +78,9 @@ install_1bash() {
         else
             log_info "No .bash_profile found to source."
         fi
-        log_success "1bash installed and configured."
+        log_success "dotfiles installed and configured."
     else
-        log_error "1bash installation failed, but continuing..."
+        log_error "dotfiles installation failed, but continuing..."
     fi
 }
 
@@ -88,10 +88,10 @@ install_nvm() {
     if [ ! -d "$HOME/.nvm" ] && [ ! -d "$HOME/.config/nvm" ]; then
         log_info "Installing NVM..."
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
-        
+
         export NVM_DIR="$([ -d "$HOME/.config/nvm" ] && echo "$HOME/.config/nvm" || echo "$HOME/.nvm")"
         [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
-        
+
         nvm install --lts
         nvm use --lts
         nvm alias default 'lts/*'
@@ -161,7 +161,7 @@ show_menu() {
     echo "1) Prerequisites (wget, git, curl, vim)"
     echo "2) GNOME Tweaks"
     echo "3) Zoxide (smart cd command)"
-    echo "4) 1bash (bash enhancement)"
+    echo "4) dotfiles (bash enhancement)"
     echo "5) NVM & Node.js LTS"
     echo "6) GitHub CLI"
     echo "7) FFmpeg (multimedia framework)"
@@ -183,12 +183,12 @@ select_packages() {
             1) selected_packages+=("prerequisites") ;;
             2) selected_packages+=("gnome_tweaks") ;;
             3) selected_packages+=("zoxide") ;;
-            4) selected_packages+=("1bash") ;;
+            4) selected_packages+=("dotfiles") ;;
             5) selected_packages+=("nvm") ;;
             6) selected_packages+=("gh") ;;
             7) selected_packages+=("ffmpeg") ;;
             8) selected_packages+=("git_crypt") ;;
-            9) selected_packages=("prerequisites" "gnome_tweaks" "zoxide" "1bash" "nvm" "gh" "ffmpeg" "git_crypt"); break ;;
+            9) selected_packages=("prerequisites" "gnome_tweaks" "zoxide" "dotfiles" "nvm" "gh" "ffmpeg" "git_crypt"); break ;;
             0) break ;;
             *) echo "Invalid choice. Please enter 0-9." ;;
         esac
@@ -213,7 +213,7 @@ main() {
         install_prerequisites
         install_gnome_tweaks
         install_zoxide
-        install_1bash
+        install_dotfiles
         install_nvm
         install_gh
         install_ffmpeg

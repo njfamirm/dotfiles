@@ -1,10 +1,10 @@
 #!/bin/bash
 
 if [ "$BASH" ]; then
-  export ONE_BASH=~/1bash
+  export DOTFILES=~/dotfiles
 
-  if [ -f $ONE_BASH/1bash.sh ]; then
-    . $ONE_BASH/1bash.sh
+  if [ -f $DOTFILES/dotfiles.sh ]; then
+    . $DOTFILES/dotfiles.sh
   fi
 
   # Uncoment the following lines if you want to load ~/.bashrc too

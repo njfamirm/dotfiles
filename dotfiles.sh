@@ -11,15 +11,15 @@ case $- in
     *) return;;
 esac
 
-if [ -z "$ONE_BASH" ]; then
-  export ONE_BASH='~/1bash'
+if [ -z "$DOTFILES" ]; then
+  export DOTFILES='~/dotfiles'
 fi
 
-for i in $ONE_BASH/1bash.d/*.sh; do
+for i in $DOTFILES/dotfiles.d/*.sh; do
   if [ -r $i ]; then
     . $i
   fi
 done
 unset i
 
-export PATH="$ONE_BASH/bin:$ONE_BASH/commands:$PATH"
+export PATH="$DOTFILES/bin:$PATH"

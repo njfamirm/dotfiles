@@ -4,8 +4,8 @@ set -Eeuo pipefail
 
 clear
 
-ONE_BASH=${ONE_BASH:-"$HOME/1bash"}
-BACKUP_DIR="$ONE_BASH/backup"
+DOTFILES=${DOTFILES:-"$HOME/dotfiles"}
+BACKUP_DIR="$DOTFILES/backup"
 
 function echoStep() {
   echo -e "\n\033[1;32m$1\033[0m"
@@ -27,29 +27,29 @@ function createSymlink() {
 
 # ---
 
-echo -ne "\033[1;33m💎 Setting up 1bash\033[0m\n"
+echo -ne "\033[1;33m💎 Setting up dotfiles\033[0m\n"
 
-# Clone or update 1bash
+# Clone or update dotfiles
 
-if [ -d "$ONE_BASH" ]; then
-  echo '✌🏻 1bash already exists, updating...'
-  cd $ONE_BASH
+if [ -d "$DOTFILES" ]; then
+  echo '✌🏻 dotfiles already exists, updating...'
+  cd $DOTFILES
   git pull --prune --progress --autostash --rebase
 else
-  echo '✌🏻 1bash does not exist, cloning...'
-  git clone https://github.com/njfamirm/dotfiles $ONE_BASH
+  echo '✌🏻 dotfiles does not exist, cloning...'
+  git clone https://github.com/njfamirm/dotfiles $DOTFILES
 fi
 
 # Create symbolic links
 
 echoStep '🔗 Creating symbolic links...'
 mkdir -p $BACKUP_DIR
-createSymlink $ONE_BASH/bash_profile.sh ~/.bash_profile
-createSymlink $ONE_BASH/gitconfig ~/.gitconfig
-createSymlink $ONE_BASH/config/.vimrc ~/.vimrc
-createSymlink $ONE_BASH/config/tmux.conf ~/.tmux.conf
+createSymlink $DOTFILES/bash_profile.sh ~/.bash_profile
+createSymlink $DOTFILES/gitconfig ~/.gitconfig
+createSymlink $DOTFILES/config/.vimrc ~/.vimrc
+createSymlink $DOTFILES/config/tmux.conf ~/.tmux.conf
 
 mkdir -p ~/.config
-createSymlink $ONE_BASH/config/starship.toml ~/.config/starship.toml
+createSymlink $DOTFILES/config/starship.toml ~/.config/starship.toml
 
 echoStep '🎉 Done'

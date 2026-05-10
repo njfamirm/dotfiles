@@ -306,7 +306,7 @@ alias ssh_tunnel_direct='ssh -C -o ServerAliveInterval=60 -o ServerAliveCountMax
 alias ssh_tunnel_multi_hub='ssh -c aes128-ctr -o ServerAliveInterval=60 -o ServerAliveCountMax=3 -MNL 0.0.0.0:1080:127.0.0.1:1080 mci'
 
 proxy() {
-  local config_file="$ONE_BASH/proxy.json"
+  local config_file="$DOTFILES/proxy.json"
 
   if [ -f /tmp/v2ray_pid ]; then
     stop_proxy

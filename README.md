@@ -1,11 +1,14 @@
-# 1Bash v3.0
+# My Dotfiles
 
-Linux Bash Customization, AliMD Edition customized by njfamirm ;)
+My personal dotfiles for bash.
 
 ## Install and Upgrade
 
 ```bash
-export ONE_BASH="$HOME/1bash"
-bash <(curl -s "https://raw.githubusercontent.com/njfamirm/1bash/main/setup.sh")
+export DOTFILES="$HOME/dotfiles"
+bash <(curl -s "https://raw.githubusercontent.com/njfamirm/dotfiles/main/setup.sh")
 source ~/.bash_profile
 ```
+
+## Credit
+- [1bash](https://github.com/alimd/1bash)

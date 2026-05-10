@@ -4,21 +4,34 @@
 # Navigation & System
 # ==============================================================================
 alias ..='cd ..'
-alias cd..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
-alias ~='cd ~'
-alias -- -='cd -'
-alias rm='rm -i'
-alias mkdir='mkdir -p'
+# alias rm='rm -i' # AI forgot pass `-f` every time...!
 alias c='clear'
 alias reload='source ~/.bash_profile'
 
 # ==============================================================================
 # File Listing
 # ==============================================================================
-if lsa --group-directories-first > /dev/null 2>&1; then
+if type dircolors > /dev/null 2>&1; then
+  if [ -f ~/.dircolors ]; then
+    eval "$( dircolors -b ~/.dircolors )"
+  elif [ -f $DOTFILES/dircolors ]; then
+    eval "$( dircolors -b $DOTFILES/dircolors )"
+  fi
+fi
+
+if ls --color > /dev/null 2>&1; then
+  colorflag="--color"
+else
+  colorflag="-G"
+fi
+
+alias ls="ls $colorflag"
+alias dir="dir $colorflag"
+
+if ls --group-directories-first > /dev/null 2>&1; then
     alias lsa='ls -lAhF --group-directories-first'
 else
     alias lsa='ls -lAhF'

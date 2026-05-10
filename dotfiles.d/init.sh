@@ -10,26 +10,7 @@ HISTSIZE=99999999
 shopt -s checkwinsize
 
 # ==============================================================================
-# 2. Colors & ls Configuration
-# ==============================================================================
-if type dircolors > /dev/null 2>&1; then
-  if [ -f ~/.dircolors ]; then
-    eval "$( dircolors -b ~/.dircolors )"
-  elif [ -f $ONE_BASH/dircolors ]; then
-    eval "$( dircolors -b $ONE_BASH/dircolors )"
-  fi
-fi
-
-if ls --color > /dev/null 2>&1; then
-  colorflag="--color"
-else
-  colorflag="-G"
-fi
-alias ls="ls $colorflag"
-alias dir="dir $colorflag"
-
-# ==============================================================================
-# 3. Modern CLI Tools Registrations (Starship, Zoxide, FZF)
+# 2. Modern CLI Tools Registrations (Starship, Zoxide, FZF)
 # ==============================================================================
 
 # Starship Prompt
@@ -51,7 +32,7 @@ fi
 # fi
 
 # ==============================================================================
-# 4. NVM (Node Version Manager)
+# 3. NVM (Node Version Manager)
 # ==============================================================================
 NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -59,7 +40,7 @@ NVM_DIR="$HOME/.nvm"
 
 
 # ==============================================================================
-# 5. SSH Agent Auto-Start
+# 4. SSH Agent Auto-Start
 # ==============================================================================
 export SSH_AUTH_SOCK=$HOME/.ssh/auth_sock
 export SSH_AGENT_PID=''
@@ -82,7 +63,7 @@ if [[ -f ~/.ssh/id_rsa || -f ~/.ssh/id_ed25519 ]]; then
 fi
 
 # ==============================================================================
-# 6. Load Secrets
+# 5. Load Secrets
 # ==============================================================================
 if [ -r ~/.secret.env ]; then
   source ~/.secret.env
