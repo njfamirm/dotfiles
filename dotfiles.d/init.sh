@@ -10,8 +10,18 @@ HISTSIZE=99999999
 shopt -s checkwinsize
 
 # ==============================================================================
-# 2. Modern CLI Tools Registrations (Starship, Zoxide, FZF)
+# 2. Modern CLI Tools Registrations (Starship, Zoxide, FZF, Brew)
 # ==============================================================================
+
+if command -v /opt/homebrew/bin/brew > /dev/null 2>&1; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+if [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]]; then
+  . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+fi
+
+export HOMEBREW_NO_ENV_HINTS=1
 
 # Starship Prompt
 if command -v starship &> /dev/null; then

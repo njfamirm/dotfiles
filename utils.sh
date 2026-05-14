@@ -42,16 +42,6 @@ apt_setup_base() {
 # Package Managers Setup (Homebrew)
 # ==============================================================================
 
-if command -v /opt/homebrew/bin/brew > /dev/null 2>&1; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-if [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]]; then
-  . "/opt/homebrew/etc/profile.d/bash_completion.sh"
-fi
-
-export HOMEBREW_NO_ENV_HINTS=1
-
 brew_update() {
   brew update-reset
 
