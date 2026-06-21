@@ -120,3 +120,9 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[credential]
+	helper = store
+# [http]
+# 	proxy = http://localhost:1080
+# [https]
+# 	proxy = http://localhost:1080

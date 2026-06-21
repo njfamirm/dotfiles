@@ -1,12 +1,12 @@
 #!/bin/bash
 
-v2ray_version="$(brew info v2ray | grep v2ray | grep -oE "stable [0-9.]+" | cut -d " " -f 2)"
-
 iran_url="https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/iran.dat"
 dlc_url="https://github.com/v2fly/domain-list-community/releases/latest/download/dlc.dat"
 
-iran_file="/usr/local/bin/iran.dat"
-dlc_file="/usr/local/bin/domain-community-list.dat"
+sudo mkdir -p .local/share/v2rayN/bin
+
+iran_file=".local/share/v2rayN/bin/iran.dat"
+dlc_file=".local/share/v2rayN/bin/geosite.dat"
 
 if [ -z "$iran_file" ] || [ -z "$dlc_file" ]; then
   echo "Usage: $0 </path/to/iran.dat> </path/to/dlc.dat>"

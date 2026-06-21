@@ -81,6 +81,22 @@ alias gh_pr='git p; gh pr create -a @me -w -B next'
 alias gh_pr_open='gh pr view --web'
 alias gh_repo_open='gh repo view --web'
 alias gh_ai_review='gh pr comment --body "/gemini review"'
+dcp() {
+  case "$1" in
+    b) # Branch diff
+      git diff next...HEAD | clip
+      echo "Copied branch diff (vs next) to clipboard."
+      ;;
+    s) # Staged diff
+      git diff --staged | clip
+      echo "Copied staged changes to clipboard."
+      ;;
+    *)  # Unstaged or Custom path
+      git diff "$@" | clip
+      echo "Copied diff ${1:-'unstaged'} to clipboard."
+      ;;
+  esac
+}
 
 # ==============================================================================
 # Yarn
