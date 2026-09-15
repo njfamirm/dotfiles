@@ -53,6 +53,8 @@ fi
 alias g='git'
 alias v='vim'
 alias y='yarn'
+alias p='pnpm'
+alias pn='pnpm'
 alias co='code .'
 
 # ==============================================================================
@@ -101,18 +103,57 @@ dcp() {
 # ==============================================================================
 # Yarn
 # ==============================================================================
+# Package Management
+alias yi='yarn install'
+alias ya='yarn add'
+alias yad='yarn add -D'
+alias yr='yarn remove'
+alias yup='yarn up'
+alias yui='yarn upgrade-interactive'
+alias ydlx='yarn dlx'
+
+# Scripts & Execution
 alias ys='yarn start'
-alias yp='yarn preview'
-alias yw='yarn watch'
 alias yd='yarn dev'
 alias yb='yarn build'
 alias ybp='NODE_ENV=production yarn build'
-alias yc='yarn clean'
-alias yf='yarn format'
-alias yl='yarn lint'
+alias yp='yarn preview'
+alias yw='yarn watch'
 alias yt='yarn test'
+alias yl='yarn lint'
+alias yf='yarn format'
+alias yc='yarn clean'
 alias ycb='yarn clean && yarn build'
 alias ycw='yarn clean && yarn watch'
+
+# ==============================================================================
+# pnpm
+# ==============================================================================
+# Package Management
+alias pni='pnpm install'
+alias pna='pnpm add'
+alias pnad='pnpm add -D'
+alias pnr='pnpm remove'
+alias pnup='pnpm update'
+alias pnui='pnpm update --interactive'
+alias pndlx='pnpm dlx'
+alias px='pnpm dlx'
+
+# Scripts & Execution
+alias pns='pnpm start'
+alias pnd='pnpm dev'
+alias pnb='pnpm build'
+alias pnbp='NODE_ENV=production pnpm build'
+alias pnp='pnpm preview'
+alias pnw='pnpm watch'
+alias pnt='pnpm test'
+alias pnl='pnpm lint'
+alias pnf='pnpm format'
+alias pnc='pnpm clean'
+alias pncb='pnpm clean && pnpm build'
+alias pncw='pnpm clean && pnpm watch'
+
+
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
