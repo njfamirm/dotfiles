@@ -32,9 +32,9 @@
   fa = fetch --all -v
   chp = cherry-pick -v
   d = diff --color --color-words --abbrev
-  rn = !"git fetch origin && git rebase origin/${1:-next} && git push -f #"
-  feat = !"git fetch && git switch -c feat/$1 origin/next && git push -u #"
-  sep = !"git fetch && git switch -c feat/$1 origin/next && shift && git cherry-pick $@ && git push -u && gh pr create --assignee @me --base next --fill --web #"
+  rn = !"git fetch origin && git rebase origin/${1:-main} && git push -f #"
+  feat = !"git fetch && git switch -c feat/$1 origin/main && git push -u #"
+  sep = !"git fetch && git switch -c feat/$1 origin/main && shift && git cherry-pick $@ && git push -u && gh pr create --assignee @me --base main --fill --web #"
   l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
   ls = log --oneline -n 10
   # Show the diff between the latest commit and the current state
@@ -47,15 +47,16 @@
               git gc --prune=now --aggressive && \
               git prune && \
               git remote | while read remote; do echo "Pruning remote: $remote"; git remote prune "$remote"; done"
-  delete-all-branch = !"git branch | grep -v \"next\\|main\\|master\\|\\*\" | xargs -r git branch -D"
+  delete-all-branch = !"git branch | grep -v \"main\\|master\\|\\*\" | xargs -r git branch -D"
   delete-all-tag= !"git tag -d $(git tag -l)"
 
 [help]
-  autocorrect = 1
+	autocorrect = 0
 
 [push]
   default = current
   verbose = true
+	autoSetupRemote = true
 
 [pull]
   rebase = false
