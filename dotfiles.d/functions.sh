@@ -16,7 +16,7 @@ function random() {
 
 # clean remote removed git branch include not pushed branch
 function cb() {
-  for branch in $(git branch --no-color --merged | grep -Ev "\*|next"); do
+  for branch in $(git branch --no-color --merged | grep -Ev "\*|main"); do
     read -p "Are you sure you want to delete $branch? (y/N) " choice
     if [[ "$choice" =~ ^[Yy]$ ]]; then
       git branch -d "$branch"
