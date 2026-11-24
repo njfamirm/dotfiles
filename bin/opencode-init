@@ -1,0 +1,86 @@
+#!/bin/bash
+
+# opencode-init — bootstrap/sync a project with the team OpenCode setup.
+#
+# Usage:
+#   cd /path/to/project
+#   opencode-init
+#
+# Idempotent: safe to run repeatedly.
+
+set -Eeuo pipefail
+
+SCRIPT_PATH=$(readlink -f "${BASH_SOURCE[0]}")
+DOTFILES=$(cd "$(dirname "$SCRIPT_PATH")/.." && pwd)
+OPENCODE_SRC="$DOTFILES/config/opencode"
+TARGET=$(pwd -P)
+
+if [ "$TARGET" = "$DOTFILES" ]; then
+  echo "error: run this from a project root, not from the dotfiles repo itself." >&2
+  echo "       cd /path/to/your/project && opencode-init" >&2
+  exit 1
+fi
+
+if [ ! -f "$OPENCODE_SRC/opencode.json" ]; then
+  echo "error: missing $OPENCODE_SRC/opencode.json — is dotfiles up to date?" >&2
+  exit 1
+fi
+
+# a. Full config
+cp -f "$OPENCODE_SRC/opencode.json" "./opencode.json"
+
+# b. Commands
+mkdir -p ./.opencode/command
+command_count=0
+for f in "$OPENCODE_SRC"/command/*.md; do
+  [ -e "$f" ] || continue
+  cp -f "$f" "./.opencode/command/$(basename "$f")"
+  command_count=$((command_count + 1))
+done
+
+# c. Skills
+skill_count=0
+if [ -d "$OPENCODE_SRC/skills" ] && [ -n "$(ls -A "$OPENCODE_SRC/skills")" ]; then
+  mkdir -p ./.opencode/skills
+  cp -R "$OPENCODE_SRC/skills/." "./.opencode/skills/"
+  skill_count=$(ls -A "$OPENCODE_SRC/skills" | wc -l | tr -d ' ')
+fi
+
+# d. Gitignore
+if [ ! -f ./.gitignore ]; then
+  : > ./.gitignore
+fi
+if grep -qxF '.opencode/PROGRESS.md' ./.gitignore; then
+  gitignore_state="already present"
+else
+  # Keep a newline before the entry if the file does not end with one.
+  if [ -s ./.gitignore ] && [ -n "$(tail -c 1 ./.gitignore)" ]; then
+    echo >> ./.gitignore
+  fi
+  echo '.opencode/PROGRESS.md' >> ./.gitignore
+  gitignore_state="added"
+fi
+
+# e. Starter AGENTS.md (never overwrite)
+agents_state="kept existing"
+if [ ! -e ./AGENTS.md ]; then
+  cat > ./AGENTS.md <<'EOF'
+# AGENTS.md
+
+- **Parallel tool calls:** batch independent `read`/`grep`/`glob` calls in a single turn.
+- **Targeted checks:** run scoped typecheck/lint only for touched packages, not full monorepo builds.
+- **Diff boundary:** touch only files required by the task; no unrelated refactors.
+- **No blind retries:** if `typecheck` or `edit` fails twice on the same error, stop and re-read relevant types/schemas first.
+EOF
+  agents_state="created"
+fi
+
+echo "opencode-init: synced $(basename "$TARGET")"
+echo "  opencode.json updated · .opencode/command: $command_count file(s)"
+if [ "$skill_count" -gt 0 ]; then
+  echo "  .opencode/skills: $skill_count item(s)"
+else
+  echo "  .opencode/skills: no skills in dotfiles (skipped)"
+fi
+echo "  .gitignore: .opencode/PROGRESS.md $gitignore_state"
+echo "  AGENTS.md: $agents_state"

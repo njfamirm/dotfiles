@@ -67,6 +67,19 @@ for f in "$DOTFILES"/config/opencode/plugins/*; do
 done
 # NOTE: ~/.config/opencode/service.json is machine-specific and stays untracked.
 
+# OpenCode skills (only if the dotfiles repo provides any)
+if [ -d "$DOTFILES/config/opencode/skills" ] && [ -n "$(ls -A "$DOTFILES/config/opencode/skills")" ]; then
+  mkdir -p ~/.config/opencode/skills
+  for f in "$DOTFILES"/config/opencode/skills/*; do
+    [ -e "$f" ] || continue
+    createSymlink "$f" "$HOME/.config/opencode/skills/$(basename "$f")"
+  done
+fi
+
+# CLI helpers
+mkdir -p ~/.local/bin
+createSymlink "$DOTFILES/bin/opencode-init" "$HOME/.local/bin/opencode-init"
+
 # Create machine-specific overrides from templates (never tracked by git)
 
 echoStep '🖥️  Creating local override files...'
