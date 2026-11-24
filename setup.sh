@@ -52,6 +52,21 @@ createSymlink $DOTFILES/config/tmux.conf ~/.tmux.conf
 mkdir -p ~/.config
 createSymlink $DOTFILES/config/starship.toml ~/.config/starship.toml
 
+# OpenCode (global config, commands and plugins live in this repo)
+
+echoStep '🤖 Linking OpenCode config...'
+mkdir -p ~/.config/opencode/command ~/.config/opencode/plugins
+createSymlink "$DOTFILES/config/opencode/opencode.json" "$HOME/.config/opencode/opencode.json"
+for f in "$DOTFILES"/config/opencode/command/*.md; do
+  [ -e "$f" ] || continue
+  createSymlink "$f" "$HOME/.config/opencode/command/$(basename "$f")"
+done
+for f in "$DOTFILES"/config/opencode/plugins/*; do
+  [ -e "$f" ] || continue
+  createSymlink "$f" "$HOME/.config/opencode/plugins/$(basename "$f")"
+done
+# NOTE: ~/.config/opencode/service.json is machine-specific and stays untracked.
+
 # Create machine-specific overrides from templates (never tracked by git)
 
 echoStep '🖥️  Creating local override files...'
