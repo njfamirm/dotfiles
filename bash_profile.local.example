@@ -1,0 +1,24 @@
+# Machine-specific shell setup.
+# Copy to ~/.bash_profile.local and adjust for this machine.
+#
+#   cp bash_profile.local.example ~/.bash_profile.local
+
+# Antigravity CLI / user-local binaries
+if [ -d "$HOME/.local/bin" ]; then
+  case ":$PATH:" in
+    *":$HOME/.local/bin:"*) ;;
+    *) export PATH="$HOME/.local/bin:$PATH" ;;
+  esac
+fi
+
+# Vite+ bin (https://viteplus.dev)
+[ -r "$HOME/.config/vite-plus/env" ] && . "$HOME/.config/vite-plus/env"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+if [ -d "$BUN_INSTALL/bin" ]; then
+  case ":$PATH:" in
+    *":$BUN_INSTALL/bin:"*) ;;
+    *) export PATH="$BUN_INSTALL/bin:$PATH" ;;
+  esac
+fi

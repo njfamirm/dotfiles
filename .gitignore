@@ -10,3 +10,8 @@ Thumbs.db
 Desktop.ini
 
 /backup
+
+# Machine-specific / local overrides
+*.local
+proxy.local.json
+.secret.env

@@ -8,8 +8,12 @@ if [ "$BASH" ]; then
   fi
 
   # Uncoment the following lines if you want to load ~/.bashrc too
-  # if [ -f ~/.bashrc ]; then
-  #   . ~/.bashrc
-  # fi
+  if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+  fi
 fi
 
+# Machine-specific PATHs, tool envs and other per-system setup
+if [ -r ~/.bash_profile.local ]; then
+  . ~/.bash_profile.local
+fi

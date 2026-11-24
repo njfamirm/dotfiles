@@ -52,4 +52,16 @@ createSymlink $DOTFILES/config/tmux.conf ~/.tmux.conf
 mkdir -p ~/.config
 createSymlink $DOTFILES/config/starship.toml ~/.config/starship.toml
 
+# Create machine-specific overrides from templates (never tracked by git)
+
+echoStep '🖥️  Creating local override files...'
+if [ ! -e ~/.gitconfig.local ] && [ -f "$DOTFILES/gitconfig.local.example" ]; then
+  cp "$DOTFILES/gitconfig.local.example" ~/.gitconfig.local
+  echo "Created ~/.gitconfig.local — set your signingkey or disable gpgsign"
+fi
+if [ ! -e ~/.bash_profile.local ] && [ -f "$DOTFILES/bash_profile.local.example" ]; then
+  cp "$DOTFILES/bash_profile.local.example" ~/.bash_profile.local
+  echo "Created ~/.bash_profile.local"
+fi
+
 echoStep '🎉 Done'

@@ -1,0 +1,20 @@
+# Machine-specific git settings.
+# Copy to ~/.gitconfig.local and adjust for this machine.
+#
+#   cp gitconfig.local.example ~/.gitconfig.local
+
+[user]
+	# GPG key ID used to sign commits on this machine
+	signingkey =
+
+[commit]
+	# Set to false if this machine has no GPG key
+	gpgsign = true
+
+# Use GitHub CLI as the credential helper
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential
