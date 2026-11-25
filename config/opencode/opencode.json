@@ -9,10 +9,11 @@
   "permission": {
     "bash": {
       "*": "allow",
-      "git push *": "ask",
-      "rtk git push *": "ask",
       "git reset --hard*": "ask",
       "rtk git reset --hard*": "ask",
+      "git push --force*": "ask",
+      "git push -f*": "ask",
+      "git push * main*": "ask",
       "rm -rf *": "ask"
     },
     "read": {
@@ -27,10 +28,12 @@
       "variant": "low"
     },
     "plan": {
-      "model": "opencode-go/glm-5.3"
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "variant": "medium"
     },
     "review": {
-      "model": "opencode-go/glm-5.3",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "variant": "low",
       "description": "Read-only diff and architecture reviewer",
       "permission": {
         "edit": "deny",
