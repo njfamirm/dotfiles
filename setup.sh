@@ -44,7 +44,8 @@ fi
 
 echoStep '🔗 Creating symbolic links...'
 mkdir -p $BACKUP_DIR
-createSymlink $DOTFILES/bash_profile.sh ~/.bash_profile
+createSymlink "$DOTFILES/bash_profile.sh" ~/.bash_profile
+createSymlink "$DOTFILES/bashrc.sh" ~/.bashrc
 createSymlink $DOTFILES/gitconfig ~/.gitconfig
 createSymlink $DOTFILES/config/.vimrc ~/.vimrc
 createSymlink $DOTFILES/config/tmux.conf ~/.tmux.conf

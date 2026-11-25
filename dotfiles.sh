@@ -12,14 +12,17 @@ case $- in
 esac
 
 if [ -z "$DOTFILES" ]; then
-  export DOTFILES='~/dotfiles'
+  export DOTFILES="$HOME/dotfiles"
 fi
 
-for i in $DOTFILES/dotfiles.d/*.sh; do
-  if [ -r $i ]; then
-    . $i
+for i in "$DOTFILES"/dotfiles.d/*.sh; do
+  if [ -r "$i" ]; then
+    . "$i"
   fi
 done
 unset i
 
-export PATH="$DOTFILES/bin:$PATH"
+case ":$PATH:" in
+  *":$DOTFILES/bin:"*) ;;
+  *) export PATH="$DOTFILES/bin:$PATH" ;;
+esac
